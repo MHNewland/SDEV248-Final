@@ -12,6 +12,7 @@ public abstract class EnemyClass : MonoBehaviour
 
     [SerializeField]
     protected Image healthbar;
+    protected Canvas canvas;
 
     protected Rigidbody2D rb;
     protected SpriteRenderer ecRenderer;
@@ -34,6 +35,8 @@ public abstract class EnemyClass : MonoBehaviour
         PlayerController.Instance.OnColorShift += PlayerController_ChangeColor;
         ecRenderer = GetComponent<SpriteRenderer>();
         currentLayer = gameObject.layer;
+        canvas = GetComponentInChildren<Canvas>();
+        Debug.Log(canvas);
         Image[] images = GetComponentsInChildren<Image>();
         foreach(Image i in images)
         {
@@ -56,6 +59,7 @@ public abstract class EnemyClass : MonoBehaviour
 
     protected void UpdateHPBar()
     {
+        canvas.gameObject.SetActive(ecRenderer.material.color.a != 0);
         if (hp<=0)
         {
             Destroy(gameObject);
