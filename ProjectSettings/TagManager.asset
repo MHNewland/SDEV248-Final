@@ -5,6 +5,10 @@ TagManager:
   serializedVersion: 2
   tags:
   - World
+  - Enemy
+  - SpawnPoint
+  - Bounds
+  - Bullet
   layers:
   - Default
   - TransparentFX
@@ -41,4 +45,7 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Background
+    uniqueID: 2332884051
     locked: 0

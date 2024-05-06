@@ -19,7 +19,7 @@ GameObject:
   - component: {fileID: 2584657715362640522}
   m_Layer: 0
   m_Name: Prowler
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -116,7 +116,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 0
-  healthbar: {fileID: 0}
+  healthbar: {fileID: 6867875716627715983}
+  canvas: {fileID: 4413582309620621320}
   range: 0.71
   boxCollider: {fileID: 3395437273276649711}
   wallCollider: {fileID: 7071609596799503208}

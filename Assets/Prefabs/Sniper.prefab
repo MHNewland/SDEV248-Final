@@ -262,12 +262,12 @@ GameObject:
   - component: {fileID: 7874317256603190304}
   - component: {fileID: 7874317256603190305}
   - component: {fileID: 7874317256603190310}
-  - component: {fileID: 7874317256603190306}
   - component: {fileID: 7874317256603190307}
   - component: {fileID: 533873409445646600}
+  - component: {fileID: 1058899473601061391}
   m_Layer: 0
   m_Name: Sniper
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -280,7 +280,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7874317256603190311}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.68, y: 1.69, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4739863509981337313}
@@ -359,32 +359,6 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!61 &7874317256603190306
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7874317256603190311}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.03, y: -0.155}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.065, y: 0.065}
-  m_EdgeRadius: 0
 --- !u!114 &7874317256603190307
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -399,8 +373,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hp: 0
   healthbar: {fileID: 7965040768540169020}
+  canvas: {fileID: 4432159740207204274}
   range: 5
-  attackSpawnPoint: {fileID: 7874317256603190306}
+  attackSpawnPoint: {fileID: 1058899473601061391}
+  bullet: {fileID: 6280586286561959006, guid: 20acda1fb97565344b77a2de8c67f386, type: 3}
 --- !u!114 &533873409445646600
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -414,3 +390,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   csRenderer: {fileID: 7874317256603190305}
+--- !u!70 &1058899473601061391
+CapsuleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7874317256603190311}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.035597622, y: 0}
+  m_Size: {x: 0.56570876, y: 1}
+  m_Direction: 0

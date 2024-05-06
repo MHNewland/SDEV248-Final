@@ -19,7 +19,6 @@ public class WorldColorShift : MonoBehaviour
 
     void PlayerController_ChangeColor(object sender, (Color prevColor, Color nextColor) e)
     {
-
         StartCoroutine(gameObject.GetComponent<ColorShiftSystem>().ChangeColor(e.prevColor, e.nextColor));
 
         //expects to receive "Blue", "Red", or "Yellow"

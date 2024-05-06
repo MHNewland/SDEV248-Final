@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using static UnityEditor.Experimental.GraphView.GraphView;
 
 public class SniperController : EnemyClass
 {
 
     [SerializeField]
-    BoxCollider2D attackSpawnPoint;
- 
+    Collider2D attackSpawnPoint;
+
+    [SerializeField]
+    GameObject bullet;
 
     Animator sniperAnimator;
 
@@ -17,7 +20,7 @@ public class SniperController : EnemyClass
     {
         ecRenderer = GetComponent<SpriteRenderer>();
         sniperAnimator = GetComponent<Animator>();
-        attackCooldown = 4;
+        attackCooldown = 3;
         hp = 2;
         maxHP = 2;
     }
@@ -41,8 +44,20 @@ public class SniperController : EnemyClass
     public override void Attack()
     {
         sniperAnimator.SetTrigger("Attack");
+
+        Vector3 dir = PlayerController.Instance.gameObject.transform.position - transform.position;
+        float angle = Mathf.Atan2(dir.y, dir.x) * Mathf.Rad2Deg;
+        Quaternion q = Quaternion.Euler(0f, 0f, angle);
+        
+        StartCoroutine("fireBullet", q);
     }
 
+    IEnumerator fireBullet(Quaternion q)
+    {
+        yield return new WaitForSeconds(.5f);
+        GameObject bulletGO = Instantiate(bullet, attackSpawnPoint.bounds.center, q, transform);
+        bulletGO.GetComponent<BulletController>().parent = gameObject;
+    }
     public override void Move()
     {
         throw new System.NotImplementedException();
@@ -61,5 +76,10 @@ public class SniperController : EnemyClass
     {
         Gizmos.color = Color.red;
         Gizmos.DrawWireSphere(gameObject.transform.position, range);
+    }
+
+    public  void TakeDamage()
+    {
+        hp--;
     }
 }

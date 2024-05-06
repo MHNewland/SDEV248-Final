@@ -38,6 +38,7 @@ public class ProwlerController : EnemyClass
         prowlerAnimator = GetComponent<Animator>();
         hp = 3;
         maxHP = 3;
+
     }
 
     private void Update()
@@ -63,8 +64,6 @@ public class ProwlerController : EnemyClass
     public override void Attack()
     {
         prowlerAnimator.SetTrigger("Attack");
-       
-        Debug.Log("Attacked");
     }
 
     public override void Move()
@@ -106,7 +105,7 @@ public class ProwlerController : EnemyClass
         Gizmos.color = Color.red;
         Gizmos.DrawWireCube(boxCollider.bounds.center + transform.right * colliderDistance * range * transform.localScale.x, new Vector3(boxCollider.size.x * range, .4f));
     }
-
+    //called during animation
     private void DamagePlayer()
     {
         if (PlayerInSight())
@@ -138,8 +137,10 @@ public class ProwlerController : EnemyClass
     //edge collider came out of ground
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(!edgeCollider.IsTouchingLayers())
+        if(!edgeCollider.IsTouchingLayers() || collision.gameObject.layer == gameObject.layer)
         {
+            if (collision.CompareTag("Bullet")) return;
+
             if (gameObject.transform.localScale.x == 1)
             {
                 movingRight = false;
@@ -149,5 +150,10 @@ public class ProwlerController : EnemyClass
                 movingRight = true;
             }
         }
+    }
+
+    public void TakeDamage()
+    {
+        hp--;
     }
 }
